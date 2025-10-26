@@ -1,0 +1,79 @@
+--- .gitignore Template cho dự án (React Native + Expo) ---
+
+1. BẮT BUỘC (Hệ điều hành & Editor)
+
+Bỏ qua các file rác của hệ điều hành và editor
+
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*~
+*.log
+*.tmp
+
+Visual Studio Code
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+2. BẮT BUỘC (Dependencies & Secrets)
+
+Bỏ qua thư mục chứa các thư viện (rất nặng)
+
+/node_modules/
+
+Bỏ qua các file bí mật (API Keys, mật khẩu CSDL)
+
+KHÔNG BAO GIỜ commit các file này lên Git
+
+.env
+.env.local
+.env.*
+*.pem
+*.key
+*ServiceAccountKey.json
+
+Logs
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+3. REACT NATIVE & EXPO
+
+------------------------------
+
+Thư mục build (cho React Native CLI)
+
+/android/build/
+/android/app/build/
+/android/.gradle/
+/ios/build/
+/ios/Pods/
+
+Expo (cho Expo)
+
+.expo/
+*.jks
+*.keystore
+/android/local.properties
+
+4. TÀI LIỆU & BÁO CÁO (Tùy chọn)
+
+Bỏ qua các file tạm thời của Microsoft Office
+
+~$*.docx
+~$.pptx
+~$.xlsx
+
+(Optional) Bỏ qua các file build của tài liệu, ví dụ như PDF
+
+Bạn có thể muốn commit file PDF, nên hãy cân nhắc dòng này
+
+*.pdf
