@@ -7,9 +7,9 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Import 3 component Tab
-import OverviewTab from '../../components/CourseDetailTabs/OverviewTab';
-import LessonsTab from '../../components/CourseDetailTabs/LessonsTab';
-import ReviewTab from '../../components/CourseDetailTabs/ReviewTab';
+import OverviewTab from '../../../components/CourseDetailTabs/OverviewTab';
+import LessonsTab from '../../../components/CourseDetailTabs/LessonsTab';
+import ReviewTab from '../../../components/CourseDetailTabs/ReviewTab';
 
 // Khởi tạo Top Tab Navigator
 const TopTab = createMaterialTopTabNavigator();

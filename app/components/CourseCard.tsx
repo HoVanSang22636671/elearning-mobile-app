@@ -12,6 +12,7 @@ export interface Course {
     lessons: number;
     imageUrl: string;
     isBestseller?: boolean;
+    price?: number; // <-- LỖI ĐÃ ĐƯỢC SỬA TẠI ĐÂY
 }
 
 interface CourseCardProps {
@@ -137,3 +138,4 @@ const styles = StyleSheet.create({
 });
 
 export default CourseCard;
+

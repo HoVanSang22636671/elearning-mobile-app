@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+// 1. IMPORT LINK TỪ EXPO ROUTER
 import { Link } from 'expo-router';
 
 // --- DỮ LIỆU GIẢ ---
 const MOCK_TEACHER = {
-    id: 't1',
+    id: 't1', // Đảm bảo ID này tồn tại
     name: 'Sara Weise',
     title: 'UI/UX Designer',
     avatarUrl: 'https://placehold.co/60x60/d4ffc2/black?text=SW',
@@ -33,13 +34,20 @@ export default function OverviewTab() {
         <ScrollView style={styles.container}>
             {/* Teacher Info */}
             <View style={styles.teacherContainer}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-                    <Image source={{ uri: MOCK_TEACHER.avatarUrl }} style={styles.avatar} />
-                    <View>
-                        <Text style={styles.teacherName}>{MOCK_TEACHER.name}</Text>
-                        <Text style={styles.teacherTitle}>{MOCK_TEACHER.title}</Text>
-                    </View>
-                </View>
+
+                {/* 2. BỌC PHẦN THÔNG TIN BẰNG LINK */}
+                <Link href={`/teacher/${MOCK_TEACHER.id}`} asChild>
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                        <Image source={{ uri: MOCK_TEACHER.avatarUrl }} style={styles.avatar} />
+                        <View>
+                            <Text style={styles.teacherName}>{MOCK_TEACHER.name}</Text>
+                            <Text style={styles.teacherTitle}>{MOCK_TEACHER.title}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </Link>
+                {/* --- HẾT PHẦN BỌC LINK --- */}
+
+                {/* Nút Follow vẫn giữ nguyên */}
                 <TouchableOpacity style={styles.followButton}>
                     <Text style={styles.followText}>Follow</Text>
                 </TouchableOpacity>
@@ -53,7 +61,6 @@ export default function OverviewTab() {
             </Text>
             {/* --- HẾT PHẦN MỚI --- */}
 
-
             {/* Benefits */}
             <Text style={styles.sectionTitle}>Benefits</Text>
             <View style={styles.benefitsContainer}>
@@ -64,6 +71,7 @@ export default function OverviewTab() {
 
             {/* TODO: Similar courses (Sẽ cần CourseCard component) */}
             <Text style={styles.sectionTitle}>Similar courses</Text>
+            {/* Bạn có thể thêm FlatList chứa <CourseCard> ở đây */}
 
         </ScrollView>
     );

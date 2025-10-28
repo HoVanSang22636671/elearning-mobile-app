@@ -177,7 +177,9 @@ export default function HomeScreen() {
           data={MOCK_TEACHERS}
           renderItem={({ item }) => (
             <Link href={`/teacher/${item.id}`} asChild>
-              <TeacherCard teacher={item} />
+              <TouchableOpacity>
+                <TeacherCard teacher={item} />
+              </TouchableOpacity>
             </Link>
           )}
           keyExtractor={(item) => item.id}
