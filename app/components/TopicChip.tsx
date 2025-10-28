@@ -1,17 +1,21 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+// Xóa bỏ useRouter, component này không cần biết về điều hướng
+// import { useRouter } from 'expo-router'; 
 
 interface TopicChipProps {
     title: string;
+    onPress: () => void; // THÊM prop này
 }
 
-const TopicChip: React.FC<TopicChipProps> = ({ title }) => {
-    const router = useRouter();
+const TopicChip: React.FC<TopicChipProps> = ({ title, onPress }) => {
+    // const router = useRouter(); // Xóa bỏ
 
-    // Khi bấm vào chip, cũng sẽ tìm kiếm
     const handlePress = () => {
-        router.push(`/search-results?q=${title}`);
+        // router.push(`/search-results?q=${title}`); // XÓA BỎ DÒNG SAI NÀY
+        if (onPress) {
+            onPress(); // Gọi hàm onPress được truyền từ ngoài vào
+        }
     };
 
     return (
@@ -40,3 +44,4 @@ const styles = StyleSheet.create({
 });
 
 export default TopicChip;
+

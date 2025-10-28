@@ -11,17 +11,16 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, Link } from 'expo-router';
 
-// Import các component chúng ta cần
-import SearchBar from '../../components/SearchBar';
-import TopicChip from '../../components/TopicChip';
-import SectionHeader from '../../components/SectionHeader';
-import CourseCard, { Course } from '../../components/CourseCard'; // Tái sử dụng từ Home
+// Import các component chúng ta cần (Đường dẫn thay đổi)
+import SearchBar from '../../../components/SearchBar';
+import TopicChip from '../../../components/TopicChip'; // (Đã được cập nhật)
+import SectionHeader from '../../../components/SectionHeader';
+import CourseCard, { Course } from '../../../components/CourseCard';
 
 // --- DỮ LIỆU GIẢ ---
 const MOCK_TOPICS = [
     'Java', 'SQL', 'Javascript', 'Python', 'Digital marketing', 'Photoshop', 'Watercolor',
 ];
-
 const MOCK_CATEGORIES_LIST = [
     { id: '1', title: 'Business', icon: 'briefcase', color: '#0288D1' },
     { id: '2', title: 'Design', icon: 'color-palette', color: '#7B1FA2' },
@@ -29,8 +28,6 @@ const MOCK_CATEGORIES_LIST = [
     { id: '4.7', title: 'Movie', icon: 'videocam', color: '#D32F2F' },
     { id: '5', title: 'Language', icon: 'language', color: '#FFB300' },
 ];
-
-// Dùng lại data từ Home cho "Recommended"
 const MOCK_COURSES: Course[] = [
     {
         id: 'c3',
@@ -54,7 +51,6 @@ const MOCK_COURSES: Course[] = [
 ];
 // --- Hết dữ liệu giả ---
 
-
 // Component Category Row (dùng nội bộ trong file này)
 const CategoryRow = ({ title, icon, color }: { title: string, icon: any, color: string }) => {
     return (
@@ -72,11 +68,9 @@ const CategoryRow = ({ title, icon, color }: { title: string, icon: any, color: 
 export default function SearchScreen() {
     const router = useRouter();
 
-    // Hàm xử lý khi người dùng tìm kiếm
     const handleSearch = (query: string) => {
-        // Điều hướng đến trang kết quả (màn hình tiếp theo)
-        // và truyền tham số `q` (query)
-        router.push(`/search-results?q=${query}`);
+        // Đường dẫn này ĐÚNG (điều hướng tương đối)
+        router.push(`./results?q=${query}`);
     };
 
     return (
@@ -91,7 +85,13 @@ export default function SearchScreen() {
                 <SectionHeader title="Hot topics" />
                 <View style={styles.topicsContainer}>
                     {MOCK_TOPICS.map((topic) => (
-                        <TopicChip key={topic} title={topic} />
+                        <TopicChip
+                            key={topic}
+                            title={topic}
+                            // THAY ĐỔI QUAN TRỌNG:
+                            // Truyền logic điều hướng ĐÚNG vào
+                            onPress={() => router.push(`/search/results?q=${topic}`)}
+                        />
                     ))}
                 </View>
 
@@ -127,6 +127,7 @@ export default function SearchScreen() {
     );
 }
 
+// ... (Styles giữ nguyên) ...
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
@@ -137,16 +138,15 @@ const styles = StyleSheet.create({
     },
     paddingContainer: {
         paddingHorizontal: 20,
-        paddingTop: 20, // Thêm padding top cho an toàn
+        paddingTop: 20, // Thêm padding top
     },
     topicsContainer: {
         flexDirection: 'row',
-        flexWrap: 'wrap', // Tự động xuống hàng
+        flexWrap: 'wrap',
         paddingHorizontal: 20,
         marginTop: 16,
         marginBottom: 10,
     },
-    // Styles cho CategoryRow (component nội bộ)
     categoryRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -172,3 +172,4 @@ const styles = StyleSheet.create({
         color: '#333',
     },
 });
+

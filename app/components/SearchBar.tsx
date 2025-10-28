@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, Keyboard } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-// Định nghĩa Props, bao gồm hàm onSearch
+// Định nghĩa Props, bao gồm hàm onSearch và defaultValue
 interface SearchBarProps {
     onSearch: (query: string) => void;
+    defaultValue?: string; // Thêm dòng này
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-    const [query, setQuery] = React.useState('');
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, defaultValue }) => {
+    // Sử dụng defaultValue để khởi tạo state
+    const [query, setQuery] = React.useState(defaultValue || '');
 
     const handlePress = () => {
         Keyboard.dismiss(); // Ẩn bàn phím
@@ -28,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
                     placeholderTextColor="#888"
                     value={query}
                     onChangeText={setQuery}
-                    onSubmitEditing={handlePress} // Xử lý khi bấm "Enter"
+                    onSubmitEditing={handlePress}
                     returnKeyType="search"
                 />
             </View>
@@ -42,18 +45,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     );
 };
 
+// ... (Styles vẫn giữ nguyên như cũ)
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
-        marginBottom: 20,
+        marginBottom: 16,
+        paddingHorizontal: 20, // Thêm padding ở đây thay vì ở màn hình
     },
     searchBox: {
-        flex: 1, // Chiếm phần lớn không gian
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f5f5f5', // Màu nền xám nhạt
+        backgroundColor: '#f5f5f5',
         borderRadius: 12,
         paddingHorizontal: 12,
         height: 48,
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     filterButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#00A89C', // Màu xanh teal
+        backgroundColor: '#00A89C',
         borderRadius: 12,
         paddingHorizontal: 14,
         height: 48,
@@ -85,3 +90,4 @@ const styles = StyleSheet.create({
 });
 
 export default SearchBar;
+
