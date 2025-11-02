@@ -65,6 +65,21 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
         }}
       />
+
+      <Tabs.Screen
+        name="course/[id]" // Trỏ đến app/(tabs)/course/[id].tsx
+        options={{
+          href: null, // <-- DÒNG NÀY SẼ ẨN NÓ
+        }}
+      />
+      <Tabs.Screen
+        name="teacher/[id]" // Trỏ đến app/(tabs)/teacher/[id].tsx
+        options={{
+          href: null, // <-- DÒNG NÀY SẼ ẨN NÓ
+        }}
+      />
     </Tabs>
+
+
   );
 }
