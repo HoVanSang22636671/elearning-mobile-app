@@ -78,6 +78,13 @@ export default function TabLayout() {
           href: null, // <-- DÒNG NÀY SẼ ẨN NÓ
         }}
       />
+
+      <Tabs.Screen
+        name="learning/[id]"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
 
 
